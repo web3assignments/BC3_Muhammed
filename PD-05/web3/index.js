@@ -114,7 +114,7 @@ var contract = await web3.eth.requestAccounts();
     web3 = new Web3(Web3.givenProvider); // provider from metamask      
     var result = await web3.eth.requestAccounts().catch(x => console.log(x.message));
     console.log(`web3 is present: ${web3.version}`); // note: use ` (back quote)
-    const network = await web3.eth.net.getId().catch((reason) => console.log(`Cannnot find network ${reason}`));
+    const network = await web3.eth.net.getId().catch((reason) => console.log(`Cannot find network ${reason}`));
     if (typeof network === 'undefined' || network != 4) { console.log("Please select Rinkeby test network"); return; }
     console.log("Ethereum network: Rinkeby")
     accounts = await web3.eth.getAccounts();
@@ -123,8 +123,8 @@ var contract = await web3.eth.requestAccounts();
 }
 window.addEventListener("load", asyncloaded);       
 
-async function sendToken() {
-    console.log("In sendToken")
+async function send() {
+    console.log("In send")
     var result=await contract.methods.Coin().send({from: accounts[0]})
     console.log(result)
     console.log(result.events)
