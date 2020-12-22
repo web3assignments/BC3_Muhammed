@@ -125,7 +125,7 @@ window.addEventListener("load", asyncloaded);
 
 async function sendToken() {
     console.log("In sendToken")
-    var result=await contract.methods.sendToken().send({from: accounts[0]})
+    var result=await contract.methods.Coin().send({from: accounts[0]})
     console.log(result)
     console.log(result.events)
     console.log(result.events.Purchase.returnValues)
