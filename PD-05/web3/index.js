@@ -11,9 +11,9 @@ async function asyncloaded() {
 }
 window.addEventListener("load", asyncloaded);       
 
-async function buyToken() {
-    console.log("In buyToken")
-    var result=await contract.methods.buyToken().send({from: accounts[0]})
+async function sendToken() {
+    console.log("In sendToken")
+    var result=await contract.methods.sendToken().send({from: accounts[0]})
     console.log(result)
     console.log(result.events)
     console.log(result.events.Purchase.returnValues)
