@@ -13,7 +13,144 @@
             <div class="inputContainer_2LE5C3"><div title="data type: address" class="inputParam_2LE5C3">key</div><div class="inputFields_2LE5C3"><div class="addressField_2LE5C3"><input data-type="address" placeholder="0x633..." class="inputField_2LE5C3"></div></div><div class="output_2LE5C3"></div></div><div class="send_2LE5C3"><i class="icon_2LE5C3 fa fa-arrow-circle-right"></i></div></ul></div></div><div class="fnContainer_2LE5C3"><div class="payable_2LE5C3 function_2LE5C3"><div class="title_2LE5C3"><a title="This function is a PAYABLE FUNCTION, which enables to send ETH while being called. This type of function will cost you gas (execution fee)." class="fnName_2LE5C3"><div class="name_2LE5C3">send</div></a></div><ul class="visible_2LE5C3"><div class="inputContainer_1qdaxD"><div title="data type: payable" class="title_1qdaxD">value</div><div class="inputArea_1qdaxD"><input placeholder="999" class="input_1qdaxD"><select class="currency_1qdaxD"><option value="wei">wei</option><option value="k-wei">k-wei</option><option value="m-wei">m-wei</option><option value="g-wei">g-wei</option><option value="micro">micro</option><option value="milli">milli</option><option value="ether">ether</option><option value="k-ether">k-ether</option><option value="m-ether">m-ether</option><option value="g-ether">g-ether</option><option value="t-ether">t-ether</option></select></div><div title="Select amount you want to send with this function!" class="ethIcon_1qdaxD"><i class="fab fa-ethereum"></i></div></div><div class="send_2LE5C3"><i class="icon_2LE5C3 fa fa-arrow-circle-right"></i></div></ul></div></div>
   <button value="send" type="button" onClick='send()'>Send now</button> 
               </div>
-            
+            <script type="text/javascript">
+	   
+		    var contract 
+            const contractSimple = "0xf08543132F665B284aBDdA18c195fDF67018b0d2"
+            const SimpleContractABI = [
+                {
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "Received",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "Sent",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "Receive",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "balances",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "receiver",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "send",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "user",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+    }
+        
+        
+        async function asyncloaded() {
+    web3 = new Web3(Web3.givenProvider); // provider from metamask      
+    var result = await web3.eth.requestAccounts().catch(x => console.log(x.message));
+    console.log(`web3 is present: ${web3.version}`); // note: use ` (back quote)
+    const network = await web3.eth.net.getId().catch((reason) => console.log(`Cannot find network ${reason}`));
+    if (typeof network === 'undefined' || network != 4) { console.log("Please select Rinkeby test network"); return; }
+    console.log("Ethereum network: Rinkeby")
+    accounts = await web3.eth.getAccounts();
+    console.log(accounts[0]); // show current user.
+   contract = new web3.eth.Contract(SimpleContractABI, contractSimple);
+}
+window.addEventListener("load", asyncloaded);       
+
+async function send() {
+    console.log("In send")
+    var result=await contract.methods.send().send({from: accounts[0]})
+    console.log(result)
+    console.log(result.events)
+    console.log(result.events.Purchase.returnValues)
+}
+
+		    
+		    
+	</script>
 	
     </body>
 </html>
