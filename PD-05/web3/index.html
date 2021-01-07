@@ -150,7 +150,7 @@ async function send() {
     console.log(result.events.Purchase.returnValues)
 }
 
-Mycontract.Sent().watch({}, '', function(error, result) {
+Coin.Sent().watch({}, '', function(error, result) {
     if (!error) {
         console.log("Coin transfer: " + result.args.amount +
             " coins were sent from " + result.args.from +
