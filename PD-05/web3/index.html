@@ -16,7 +16,7 @@
             <script type="text/javascript">
 	   
 		    var contract 
-            const contractSimple = "0xf08543132F665B284aBDdA18c195fDF67018b0d2"
+            const contractSimple = "0x16CA294D32d526228ABB08bA7d3AE3512CB2927a"
             const SimpleContractABI = [
                 {
 	{
@@ -146,6 +146,17 @@ async function send() {
     console.log(result)
     console.log(result.events)
     console.log(result.events.Purchase.returnValues)
+}
+
+Coin.Sent().watch({}, '', function(error, result) {
+    if (!error) {
+        console.log("Coin transfer: " + result.args.amount +
+            " coins were sent from " + result.args.from +
+            " to " + result.args.to + ".");
+        console.log("Balances now:\n" +
+            "Sender: " + Coin.balances.call(result.args.from) +
+            "Receiver: " + Coin.balances.call(result.args.to));
+    }
 }
 
 		    
