@@ -1,14 +1,14 @@
 <!DOCTYPE html>
+<html>
+	
 <head>
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
     <script src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
-	
    </head>
-<html>
+
 <body>
-<main>
-    <h1 class="titel">Send ethereum</h1>
+<h1 class="titel">Send ethereum</h1>
 	<div class="fnContainer_2LE5C3"><div class="view_2LE5C3 function_2LE5C3"><div class="title_2LE5C3"><a title="This function is a VIEW FUNCTION (a call), which returns information from the Ethereum network and costs no gas (it's free)." class="fnName_2LE5C3"><div class="name_2LE5C3">balances</div></a></div><ul class="visible_2LE5C3">
             <div class="inputContainer_2LE5C3"><div title="data type: address" class="inputParam_2LE5C3">key</div><div class="inputFields_2LE5C3"><div class="addressField_2LE5C3"><input data-type="address" placeholder="0x633..." class="inputField_2LE5C3"></div></div><div class="output_2LE5C3"></div></div><div class="send_2LE5C3"><i class="icon_2LE5C3 fa fa-arrow-circle-right"></i></div></ul></div></div><div class="fnContainer_2LE5C3"><div class="payable_2LE5C3 function_2LE5C3"><div class="title_2LE5C3"><a title="This function is a PAYABLE FUNCTION, which enables to send ETH while being called. This type of function will cost you gas (execution fee)." class="fnName_2LE5C3"><div class="name_2LE5C3">send</div></a></div><ul class="visible_2LE5C3"><div class="inputContainer_1qdaxD"><div title="data type: payable" class="title_1qdaxD">value</div><div class="inputArea_1qdaxD"><input placeholder="999" class="input_1qdaxD"><select class="currency_1qdaxD"><option value="wei">wei</option><option value="k-wei">k-wei</option><option value="m-wei">m-wei</option><option value="g-wei">g-wei</option><option value="micro">micro</option><option value="milli">milli</option><option value="ether">ether</option><option value="k-ether">k-ether</option><option value="m-ether">m-ether</option><option value="g-ether">g-ether</option><option value="t-ether">t-ether</option></select></div><div title="Select amount you want to send with this function!" class="ethIcon_1qdaxD"><i class="fab fa-ethereum"></i></div></div><div class="send_2LE5C3"><i class="icon_2LE5C3 fa fa-arrow-circle-right"></i></div></ul></div></div>
   <button value="send" type="button" onClick='send()'>Send now</button> 
@@ -18,7 +18,6 @@
 		    var contract 
             const contractSimple = "0xca20180aa774C56Fc1C4597D8235b3A6e1c6E8F4"
 	    const SimpleContractABI = [
-               
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
@@ -70,9 +69,63 @@
 	},
 	{
 		"inputs": [],
+		"name": "EUR",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "Receive",
 		"outputs": [],
-		"stateMutability": "payable",
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "string",
+				"name": "result",
+				"type": "string"
+			}
+		],
+		"name": "__callback",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "_myid",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "string",
+				"name": "_result",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes",
+				"name": "_proof",
+				"type": "bytes"
+			}
+		],
+		"name": "__callback",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -84,6 +137,26 @@
 			}
 		],
 		"name": "balances",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getEUR",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "priceOfUrl",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -124,9 +197,8 @@
 		],
 		"stateMutability": "view",
 		"type": "function"
-	
 	}
-        ]    
+]
 		    
 		async function asyncloaded() {
     web3 = new Web3(Web3.givenProvider); // provider from metamask      
