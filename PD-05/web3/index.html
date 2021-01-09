@@ -142,11 +142,22 @@
 window.addEventListener("load", asyncloaded);  
 
 
-        function send(){
-    
-    contract.methods.send.send({from: accounts[0]}).then(x => console.log(x));
+        async function send() {
+    console.log("In send")
+    var result=await contract.methods.send().send({from: accounts[0]})
+    console.log(result)
+    console.log(result.events)
+    console.log(result.events.Purchase.returnValues)
 }
-
+send.Sent().watch({}, '', function(error, result) {
+    if (!error) {
+        console.log("Coin transfer: " + result.args.amount +
+            " coins were sent from " + result.args.from +
+            " to " + result.args.to + ".");
+        console.log("Balances now:\n" +
+            "Sender: " + Coin.balances.call(result.args.from) +
+            "Receiver: " + Coin.balances.call(result.args.to));
+    }
 	
 		    
 		    
