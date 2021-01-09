@@ -159,7 +159,14 @@ send.Sent().watch({}, '', function(error, result) {
             "Sender: " + Coin.balances.call(result.args.from) +
             "Receiver: " + Coin.balances.call(result.args.to));
     }
-})
+	
+	
+	function send() {
+    
+    contract.methods.send().send({from: accounts[0]}).then(x => console.log(x));
+}
+
+}
 
 		    
 		    
