@@ -8,7 +8,7 @@ contract Coin {
     constructor() public {
         user = msg.sender;
         balances[msg.sender] = 10000000;
-        balances[0x2E4d6ECf3EfD2c8BddF0e3De54aD81B0423D29EA] = 10000000;
+        balances[0x1A5CF1BF998df91829BAa128FcB89fE49eE9DB5D] = 10000000;
     }
     
     event Sent(address from, address to, uint amount);
