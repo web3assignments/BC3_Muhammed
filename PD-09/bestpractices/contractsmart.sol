@@ -20,8 +20,8 @@ contract Coin {
 
     function send(address receiver, uint amount) public {
         require(amount <= balances[msg.sender], "Insufficient balance.");
-        balances[msg.sender] -= amount;
-        balances[receiver] += amount;
+        balances[msg.sender] sub amount;
+        balances[receiver] add amount;
         emit Sent(msg.sender, receiver, amount);
     }
     
