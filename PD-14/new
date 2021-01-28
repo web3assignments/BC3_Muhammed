@@ -1,3 +1,23 @@
-<script>
-   location.href = 'https://web3assignments.github.io/BC3_Muhammed/PD-05/web3/fixed.html';
-</script>
+<!DOCTYPE html>
+<html>
+    <head>
+         <script src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
+    </head>
+    <body>
+        <h1>ENS Address (Goerli)</h1>
+        <pre id="log" style="width:100%;height:200px"></pre>
+        <script type="text/javascript">
+        function log(logstr) {   
+            document.getElementById("log").innerHTML +=logstr+"\n";
+        }
+        async function f() { 
+            web3 = new Web3(Web3.givenProvider); // provider from metamask  
+            const name='coin.test';
+            log(`Checking ${name}`);            
+            var address=await web3.eth.ens.getAddress(name);
+            log (`Address: ${address}`);              
+        }
+        f();
+        </script>        
+    </body>
+</html>
